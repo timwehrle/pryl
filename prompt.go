@@ -1,6 +1,7 @@
 package pryl
 
 import (
+	"fmt"
 	"github.com/timwehrle/pryl/internal/reader"
 	"github.com/timwehrle/pryl/internal/style"
 )
@@ -30,4 +31,12 @@ func (p *Prompt) WithStyle(s *style.Style) *Prompt {
 func (p *Prompt) WithValidation(fn func(string) error) *Prompt {
 	p.validate = fn
 	return p
+}
+
+func (p *Prompt) clearLine() {
+	fmt.Print("\r\033[K")
+}
+
+func (p *Prompt) moveUpOneLine() {
+	fmt.Print("\033[A")
 }
