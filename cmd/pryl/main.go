@@ -12,7 +12,7 @@ func main() {
 	name := p.Input("What is your name?", "John Doe")
 
 	customStyle := style.NewStyle(
-		style.WithQuestion("►"),
+		style.WithQuestion("!"),
 	)
 
 	age := p.WithStyle(customStyle).Input("Whats your age?", "25")
