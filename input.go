@@ -12,21 +12,25 @@ const (
 
 func (p *Prompt) Input(label string, placeholder string) string {
 	if placeholder != "" {
-		fmt.Printf("%s %s\n%s\n",
+		fmt.Printf("%s %s %s\n",
 			p.style.Question,
 			label,
 			fmt.Sprintf(p.style.Placeholder, placeholder),
 		)
-
-		p.moveUpOneLine()
-		p.clearLine()
 	} else {
-		fmt.Printf("%s %s ", p.style.Question, label)
+		fmt.Printf("%s %s\n", p.style.Question, label)
 	}
 
 	fmt.Print(p.style.Cursor + " ")
+
 	input, _ := p.reader.ReadLine()
 	result := strings.TrimSpace(input)
+
+	p.moveUpOneLine()
+	p.clearLine()
+	p.moveUpOneLine()
+	p.clearLine()
+
 
 	fmt.Printf("%s %s %s%s%s\n",
 		p.style.Question,
